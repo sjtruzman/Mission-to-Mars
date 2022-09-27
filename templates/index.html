@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mission to Mars</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body style="background-color: black">
+    <div class="container">
+        <div class="jumbotron text-center" 
+         style="background-image: url('https://cdn.mos.cms.futurecdn.net/VYCgPzXQaCwZ494DZsdPYK-970-80.jpg.webp' ); 
+         background-size: cover; background-position: center; color: rgb">
+            <h1 class="text-light">Mission to Mars</h1>
+            <p><a class="btn btn-primary btn-lg" href="/scrape"
+                role="button" style="background-color:black; border: none; color: rgb;">Scrape New Data
+            </a></p>
+        </div>
+
+      <!-- Add section for Mars News -->
+      <div class="row" id="mars-news">
+        <div class="col-md-12">
+            <div class="media">
+                <div class="media-body">
+                    <h2 style="color: rgb(224, 115, 115)">Latest Mars News</h2>
+                    <h4 class="media-heading" style="color: rgb">{{mars.news_title}}</h4>
+                    <p style="color: rgb">{{mars.news_paragraph}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+      <!-- Section for Featured Image and Facts table -->
+              <!-- Featured Image -->
+        <!-- First level-->
+        <div class="row" id="mars-featured-image">
+          <!-- Second level -->
+          <div class="col-xs-12 col-sm-6 col-md-8">
+              <h2 style="color: rgb(yellow, pink, purple)">Featured Mars Image</h2>
+              <img src="{{mars.featured_image}}" class="img-responsive" alt="Responsive image">
+          </div>
+          <!-- Optional: clear the XS cols if their content doesn't match in height -->
+           <!-- Mars Facts -->
+           <div class="col-md-4">
+            <div class="row" id="mars-facts">
+                <h3 style="color: rgb(yellow, pink, purple)">Mars Facts</h3>
+                    <div class="table-responsive">
+                        <!--<table class="dataframe table bordeless" style="background-color: black; color: navajowhite;">{{mars.facts | safe}}</table>-->
+                        <table border="1" class="dataframe table">
+                            <thead>
+                              <tr style="text-align: left;">
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <th style="color: silver;">Equatorial Diameter:</th>
+                                <td style="color: gold;">6,792 km</td>
+                              </tr>
+                              <tr>
+                                <th style="color: silver;">Polar Diameter:</th>
+                                <td style="color: gold;">6,752 km</td>
+                              </tr>
+                              <tr>
+                                <th style="color: silver;">Mass:</th>
+                                <td style="color: gold;">6.39×10^23 kg (0.11 Earths)</td>
+                              </tr>
+                              <tr>
+                                <th style="color: silver;">Moons:</th>
+                                <td style="color: gold;">2 (Phobos &amp; Deimos)</td>
+                              </tr>
+                              <tr>
+                                <th style="color: silver;">Orbit Distance:</th>
+                                <td style="color: gold;">227,943,824 km (1.38 AU)</td>
+                              </tr>
+                              <tr>
+                                <th style="color: silver;">Orbit Period:</th>
+                                <td style="color: gold;">687 days (1.9 years)</td>
+                              </tr>
+                              <tr>
+                                <th style="color: silver;">Surface Temperature:</th>
+                                <td style="color: gold;">-87 to -5 °C</td>
+                              </tr>
+                              <tr>
+                                <th style="color: silver;">First Record:</th>
+                                <td style="color: gold;">2nd millennium BC</td>
+                              </tr>
+                              <tr>
+                                <th style="color: silver;">Recorded By:</th>
+                                <td style="color: gold;">Egyptian astronomers</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+      <!-- Section for Mars Hemispheres -->
+      <div class=row id="mars-hemispheres">
+        <!-- Subtitle -->
+        <div class="col-md-12">
+            <div class="row" id="hemisphere_title">
+                <h2 style="text-align:center; color: rgb;">Mars Hemispheres</h2>
+                <hr style="width:100%">
+            </div>
+        </div>
+
+        {% for hemisphere in mars.image%}
+                <div class="col-xs-6 col-md-3">
+                    <figure class="img-responsive">
+                        <div class = "thumbnail" style="background-color: black;">
+                            <a href = "{{hemisphere.img_url}}" target = "_blank">
+                                <div>
+                                    <img src = "{{hemisphere.img_url}}" class="img-responsive" alt = "Responsive image" style = "width:100%">
+                                    <br>
+                                    <figcaption style="text-align: left;">{{hemisphere.title}}</figcaption>
+                                    <br>
+                                </div>
+                            </a>
+                         </div>
+                    </figure>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
